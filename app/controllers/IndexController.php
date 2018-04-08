@@ -7,6 +7,7 @@ class IndexController extends ControllerBase
     {
 		$this->view->title = "SQL Tester";
 		$this->view->heading = "Welcome in SQL TESTER!";
+		$this->view->book = Book::findFirst();
     }
 
 }
