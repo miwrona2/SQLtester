@@ -1,5 +1,7 @@
 <?php
 
+use Phalcon\Mvc\Model\Query;
+
 class IndexController extends ControllerBase
 {
 
@@ -7,7 +9,13 @@ class IndexController extends ControllerBase
     {
 		$this->view->title = "SQL Tester";
 		$this->view->heading = "Welcome in SQL TESTER!";
-		$this->view->book = Book::findFirst();
+
+        $query = new Query(
+            'SELECT * FROM Book',
+            $this->getDI()
+        );
+        $books = $query->execute();
+		$this->view->books = $books;
     }
 
 }
