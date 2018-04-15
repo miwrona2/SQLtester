@@ -23,6 +23,7 @@
             <div class="collapse" id="collapseResult">
                 <div class="card card-body">
                     Result of query...
+                    <?= var_dump($data) ?>
                 </div>
             </div>
             <table class="table table-striped">

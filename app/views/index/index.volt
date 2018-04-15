@@ -15,6 +15,7 @@
             <div class="collapse" id="collapseResult">
                 <div class="card card-body">
                     Result of query...
+                    {{ dump(data) }}
                 </div>
             </div>
             <table class="table table-striped">
