@@ -6,6 +6,15 @@
 
 {% block content %}
     <div class="container">
+        <div ng-app="myApp" ng-controller="namesCtrl">
+
+            <ul>
+                <li ng-repeat="x in names">
+                    {[{ x.name + ', ' + x.country }]}
+                </li>
+            </ul>
+
+        </div>
         <div class="py-5 px-5 text-center">
             <h2>{{ heading }}</h2>
                 <form action="#" class="form-group">
