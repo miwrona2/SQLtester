@@ -5,30 +5,27 @@
 
 
 {% block content %}
-    <div class="container">
-        <div ng-app="myApp" ng-controller="namesCtrl">
-
-            <ul>
-                <li ng-repeat="x in names">
-                    {[{ x.name + ', ' + x.country }]}
-                </li>
-            </ul>
-
-        </div>
+    <div class="container" ng-app="myApp" ng-controller="Controller">
         <div class="py-5 px-5 text-center">
             <h2>{{ heading }}</h2>
-                <form action="#" class="form-group">
-                    <div class="mb-3"><textarea name="query" id="777" cols="30" rows="10"></textarea></div>
-                    <div class="mb-3"><input type="submit" class="btn btn-primary btn-lg" value="Testuj" data-toggle="collapse" data-target="#collapseResult"></div>
-                </form>
-            <div class="collapse" id="collapseResult">
-                <div class="card card-body">
-                    Result of query...
-                    {{ dump(data) }}
+            <div class="row">
+                <div class="col-md-10">
+                    {{ form('class' : 'form-group') }}
+                        {{ executeForm.render('textarea', ['class' : 'form-control', 'placeholder' : 'Enter a database query or use buttons', 'ng-value' : 'textValue']) }}
+                        {{ executeForm.render('submit', ['class' : 'btn btn-success btn-fill']) }}
+                    {{ end_form }}
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-fill btn-sm btn-danger" ng-click="myFunction(var ='SELECT')">SELECT</button>
+                    <button class="btn btn-fill btn-sm btn-primary" ng-click="myFunction(var ='*')">*</button>
+                    <button class="btn btn-fill btn-sm" ng-click="myFunction(var ='FROM')">FROM</button>
+                    <button class="btn btn-fill btn-sm btn-warning" ng-click="myFunction(var ='Book')">Book</button>
+                    <button class="btn btn-fill btn-sm btn-success" ng-click="myFunction(var ='Where')">Where</button>
+                    <button class="btn btn-sm btn-light" ng-click="myFunction(var ='SELECT * FROM Book')">SELECT * FROM Book</button>
                 </div>
             </div>
             <table class="table table-striped">
-                <caption>Example database table</caption>
+                <caption>Database table 'Book'</caption>
                 <thead class="thead-dark">
                     <tr>
                         <th>Lp.</th>
