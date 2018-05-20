@@ -12,11 +12,8 @@ class IndexController extends ControllerBase
         $books = (new BookRepository())->getAll();
 		$this->view->books = $books;
 
-		$data = [
-		    'post' => $_POST,
-            'get' => $_GET
-        ];
-		$this->view->data = $data;
+		$this->view->executeForm = new ExecuteForm();
+
     }
 
 }
