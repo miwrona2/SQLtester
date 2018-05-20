@@ -12,4 +12,10 @@ Class BookRepository extends RepositoryBase
         );
         return $query->execute();
     }
+
+    public function executeQuery(string $query)
+    {
+        $queryBuilder = new Query($query, $this->getDi());
+        return $queryBuilder->execute();
+    }
 }

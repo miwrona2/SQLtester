@@ -1,9 +1,13 @@
 <?php
 
-
+/**
+ * @RoutePrefix("/index")
+ */
 class IndexController extends ControllerBase
 {
-
+    /**
+     * @Route("/index", methods={"GET"}, name="index")
+     */
     public function indexAction()
     {
 		$this->view->title = "SQL Tester";
@@ -13,7 +17,15 @@ class IndexController extends ControllerBase
 		$this->view->books = $books;
 
 		$this->view->executeForm = new ExecuteForm();
+    }
 
+    /**
+     * @Route("/execute", methods={"GET"}, name="execute")
+     */
+    public function executeAction()
+    {
+        $result =  (new BookRepository())->executeQuery(' SELECT * FROM Book');
+        return $result;
     }
 
 }

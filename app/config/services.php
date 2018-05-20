@@ -27,6 +27,19 @@ $di->setShared('url', function () {
     return $url;
 });
 
+$di->setShared('router', function () {
+    $builder =(new RouterBuilder());
+    return $builder->build();
+});
+
+$di->setShared('url', function () {
+    $url = new Url();
+    $url->setBaseUri($this->get('config')->application->baseUri);
+    $url->setStaticBaseUri($this->get('config')->application->staticUrl);
+
+    return $url;
+});
+
 /**
  * Setting up the view component
  */
@@ -34,6 +47,7 @@ $di->setShared('view', function () {
     $config = $this->getConfig();
 
     $view = new View();
+
     $view->setDI($this);
     $view->setViewsDir($config->application->viewsDir);
 

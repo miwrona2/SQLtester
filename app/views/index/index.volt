@@ -13,7 +13,7 @@
                     {{ form('class' : 'form-group') }}
                         {{ executeForm.render('textarea', ['class' : 'form-control', 'placeholder' : 'Enter a database query or use buttons', 'ng-value' : 'textValue']) }}
                         {{ executeForm.render('submit', ['class' : 'btn btn-success btn-fill']) }}
-                    {{ end_form }}
+                    {{ end_form() }}
                 </div>
                 <div class="col-md-2">
                     <button class="btn btn-fill btn-sm btn-danger" ng-click="myFunction(var ='SELECT')">SELECT</button>
@@ -43,6 +43,7 @@
                     {% endfor %}
                 </tbody>
             </table>
+            <a href="{{ url.get({'for' : 'execute'}) }}">Execute</a>
         </div>
     </div>
 {% endblock %}
