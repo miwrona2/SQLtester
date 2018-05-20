@@ -6,7 +6,7 @@
 class IndexController extends ControllerBase
 {
     /**
-     * @Route("/index", methods={"GET"}, name="index")
+     * @Route("/index", methods={"GET", "POST"}, name="index")
      */
     public function indexAction()
     {
@@ -20,12 +20,16 @@ class IndexController extends ControllerBase
     }
 
     /**
-     * @Route("/execute", methods={"GET"}, name="execute")
+     * @Route("/execute", methods={"POST"}, name="execute")
      */
     public function executeAction()
     {
-        $result =  (new BookRepository())->executeQuery(' SELECT * FROM Book');
-        return $result;
+        if ($this->request->isAjax()) {
+            return json_encode( [
+                'status' => 'success',
+                'message' => 'fuckin message'
+            ]);
+        }
     }
 
 }

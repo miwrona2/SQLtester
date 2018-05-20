@@ -43,7 +43,9 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <a href="{{ url.get({'for' : 'execute'}) }}">Execute</a>
+            <div>
+                <button ng-click="execute()" class="btn btn-danger">execute</button>
+            </div>
         </div>
     </div>
 {% endblock %}
