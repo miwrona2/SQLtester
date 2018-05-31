@@ -20,6 +20,10 @@ app.controller('Controller', function($scope, $http) {
         });
 
     };
+
+    $scope.clearWindow = function () {
+        $scope.textValue = '';
+    }
 });
 
 app.config(interpolateConfig);

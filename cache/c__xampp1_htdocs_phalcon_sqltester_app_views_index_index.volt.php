@@ -23,8 +23,9 @@
                 <div class="col-md-10">
                     <?= $this->tag->form(['class' => 'form-group']) ?>
                         <?= $executeForm->render('textarea', ['class' => 'form-control', 'placeholder' => 'Enter a database query or use buttons', 'ng-value' => 'textValue']) ?>
-                        <?= $executeForm->render('submit', ['class' => 'btn btn-success btn-fill']) ?>
+                        <?= $executeForm->render('submit', ['class' => 'btn btn-success btn-fill', 'ng-click="execute()"']) ?>
                     <?= $this->tag->endForm() ?>
+                    <button ng-click="clearWindow()" class="btn btn-warning">Wyczyść</button>
                 </div>
                 <div class="col-md-2">
                     <button class="btn btn-fill btn-sm btn-danger" ng-click="myFunction(var ='SELECT')">SELECT</button>
@@ -32,7 +33,7 @@
                     <button class="btn btn-fill btn-sm" ng-click="myFunction(var ='FROM')">FROM</button>
                     <button class="btn btn-fill btn-sm btn-warning" ng-click="myFunction(var ='Book')">Book</button>
                     <button class="btn btn-fill btn-sm btn-success" ng-click="myFunction(var ='Where')">Where</button>
-                    <button class="btn btn-sm btn-light" ng-click="myFunction(var ='SELECT * FROM Book')">SELECT * FROM Book</button>
+                    <button class="btn btn-outline-dark" ng-click="myFunction(var ='SELECT * FROM Book')">SELECT * FROM Book</button>
                 </div>
             </div>
             <table class="table table-striped">
@@ -54,7 +55,9 @@
                     <?php } ?>
                 </tbody>
             </table>
-            <a href="<?= $this->url->get(['for' => 'execute']) ?>">Execute</a>
+            <div>
+                <button ng-click="execute()" class="btn btn-danger">execute</button>
+            </div>
         </div>
     </div>
 
