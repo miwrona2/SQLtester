@@ -1,5 +1,7 @@
 <?php
 
+use Phalcon\Mvc\Model\Resultset\Simple;
+
 /**
  * @RoutePrefix("/index")
  */
@@ -25,9 +27,18 @@ class IndexController extends ControllerBase
     public function executeAction()
     {
         if ($this->request->isAjax()) {
-            return json_encode( [
+            $queryString = $this->request->getPost('queryString');
+
+            $queryResult = (new BookRepository())->executeQuery($queryString);
+
+            if ($queryResult instanceof Simple) {
+                $queryResult = $queryResult->toArray();
+            }
+
+            return json_encode([
                 'status' => 'success',
-                'message' => 'fuckin message'
+                'message' => 'Execution completed!',
+                'queryResult' => $queryResult
             ]);
         }
     }

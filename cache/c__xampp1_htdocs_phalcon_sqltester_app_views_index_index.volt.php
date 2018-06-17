@@ -21,9 +21,9 @@
             <h2><?= $heading ?></h2>
             <div class="row">
                 <div class="col-md-10">
-                    <?= $this->tag->form(['class' => 'form-group']) ?>
-                        <?= $executeForm->render('textarea', ['class' => 'form-control', 'placeholder' => 'Enter a database query or use buttons', 'ng-value' => 'textValue']) ?>
-                        <?= $executeForm->render('submit', ['class' => 'btn btn-success btn-fill', 'ng-click="execute()"']) ?>
+                    <?= $this->tag->form(['class' => 'form-group', 'ng-submit' => 'execute()']) ?>
+                        <?= $executeForm->render('textarea', ['class' => 'form-control', 'placeholder' => 'Enter a database query or use buttons', 'ng-model' => 'textValue', 'name' => 'name']) ?>
+                        <?= $executeForm->render('submit', ['class' => 'btn btn-success btn-fill']) ?>
                     <?= $this->tag->endForm() ?>
                     <button ng-click="clearWindow()" class="btn btn-warning">Wyczyść</button>
                 </div>
@@ -58,6 +58,11 @@
             <div>
                 <button ng-click="execute()" class="btn btn-danger">execute</button>
             </div>
+            <table>
+                <tr ng-repeat="row in sql">
+                    <td>{[{ row.id }]}</td>
+                </tr>
+            </table>
         </div>
     </div>
 
