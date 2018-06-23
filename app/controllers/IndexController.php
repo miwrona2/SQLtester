@@ -31,6 +31,11 @@ class IndexController extends ControllerBase
 
             $queryResult = (new BookRepository())->executeQuery($queryString);
 
+            $columns = [];
+            foreach($queryResult[0]->toArray() as $k => $v) {
+                $columns[] = $k;
+            }
+
             if ($queryResult instanceof Simple) {
                 $queryResult = $queryResult->toArray();
             }
@@ -38,7 +43,8 @@ class IndexController extends ControllerBase
             return json_encode([
                 'status' => 'success',
                 'message' => 'Execution completed!',
-                'queryResult' => $queryResult
+                'queryResult' => $queryResult,
+                'columns' => $columns
             ]);
         }
     }

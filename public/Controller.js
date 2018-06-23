@@ -2,7 +2,8 @@ var app = angular.module('myApp', []);
 app.controller('Controller', function($scope, $http) {
     $scope.var = 'default select value';
     $scope.textValue = '';
-    $scope.sql = [];
+    $scope.sqlresults = [];
+    $scope.columns = [];
     $scope.myFunction = function () {
         $scope.textValue += ' ' + $scope.var;
     };
@@ -16,10 +17,9 @@ app.controller('Controller', function($scope, $http) {
                 'X-Requested-With': 'XMLHttpRequest'
             }
         }).then(function mySuccess(response) {
-            console.log(response.data.queryResult[0]);
-            $scope.sql = response.data.queryResult;
+            $scope.sqlresults = response.data.queryResult;
+            $scope.columns = response.data.columns;
         }, function myError(response) {
-            console.log('error');
         });
 
     };

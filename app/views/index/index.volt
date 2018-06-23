@@ -44,13 +44,18 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <div>
-                <button ng-click="execute()" class="btn btn-danger">execute</button>
-            </div>
+
             <table>
-                <tr ng-repeat="row in sql">
-                    <td>{[{ row.id }]}</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th ng-repeat="column in columns">{[{ column }]}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in sqlresults">
+                        <td ng-repeat="column in columns">{[{ row[column] }]}</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
