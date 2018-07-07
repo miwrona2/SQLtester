@@ -15,10 +15,21 @@ class IndexController extends ControllerBase
 		$this->view->title = "SQL Tester";
 		$this->view->heading = "Welcome in SQL TESTER!";
 
-        $books = (new BookRepository())->getAll();
-		$this->view->books = $books;
-
 		$this->view->executeForm = new ExecuteForm();
+    }
+
+    /**
+     * @Route("/get-books", methods={"POST"}, name="getbooks")
+     */
+    public function getBooksAction()
+    {
+        $books = (new BookRepository())->getAll();
+        $this->view->books = $books;
+        return json_encode([
+            'status' => 'success',
+            'message' => 'Database result successful',
+            'books' => $books
+        ]);
     }
 
     /**
@@ -38,6 +49,8 @@ class IndexController extends ControllerBase
 
             if ($queryResult instanceof Simple) {
                 $queryResult = $queryResult->toArray();
+            } else {
+                $queryResult = [];
             }
 
             return json_encode([

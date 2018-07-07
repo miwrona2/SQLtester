@@ -24,7 +24,7 @@ class Book extends Model
 
     public function getId(): ?int
     {
-        return int($this->id) ?: null;
+        return (int)$this->id ?: null;
     }
 
     public function setId(int $id): Book

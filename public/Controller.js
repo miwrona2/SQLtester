@@ -1,11 +1,34 @@
 var app = angular.module('myApp', []);
 app.controller('Controller', function($scope, $http) {
-    $scope.var = 'default select value';
+    $scope.buton = '';
+
+    $scope.query1 = 'SELECT * FROM Book';
+    $scope.query2 = 'INSERT INTO Book (title, author) VALUES (\'book_title\', \'Name_Surname\')';
+    $scope.query3 = 'DELETE FROM Book WHERE title = \'book_title\'';
     $scope.textValue = '';
     $scope.sqlresults = [];
     $scope.columns = [];
-    $scope.myFunction = function () {
-        $scope.textValue += ' ' + $scope.var;
+    $scope.books = [];
+    $scope.getValueFromButton = function () {
+        $scope.textValue += ' ' + $scope.button;
+    };
+    $scope.getBooks = function() {
+        $http({
+            method : "POST",
+            url : "index/get-books",
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        }).then(function mySuccess(response) {
+            $scope.books = response.data.books;
+
+        }, function myError(response) {
+        });
+    };
+
+    $scope.clearWindow = function () {
+        $scope.textValue = '';
     };
     $scope.execute = function() {
         $http({
@@ -19,14 +42,13 @@ app.controller('Controller', function($scope, $http) {
         }).then(function mySuccess(response) {
             $scope.sqlresults = response.data.queryResult;
             $scope.columns = response.data.columns;
+            $scope.getBooks();
+
         }, function myError(response) {
         });
 
     };
 
-    $scope.clearWindow = function () {
-        $scope.textValue = '';
-    }
 });
 
 function serialize(obj, prefix) {

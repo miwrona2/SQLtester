@@ -28,31 +28,33 @@
                     <button ng-click="clearWindow()" class="btn btn-warning">Wyczyść</button>
                 </div>
                 <div class="col-md-2">
-                    <button class="btn btn-fill btn-sm btn-danger" ng-click="myFunction(var ='SELECT')">SELECT</button>
-                    <button class="btn btn-fill btn-sm btn-primary" ng-click="myFunction(var ='*')">*</button>
-                    <button class="btn btn-fill btn-sm" ng-click="myFunction(var ='FROM')">FROM</button>
-                    <button class="btn btn-fill btn-sm btn-warning" ng-click="myFunction(var ='Book')">Book</button>
-                    <button class="btn btn-fill btn-sm btn-success" ng-click="myFunction(var ='Where')">Where</button>
-                    <button class="btn btn-outline-dark" ng-click="myFunction(var ='SELECT * FROM Book')">SELECT * FROM Book</button>
+                    <button class="btn btn-fill btn-sm btn-danger" ng-click="getValueFromButton(button = 'SELECT')">SELECT</button>
+                    <button class="btn btn-fill btn-sm btn-primary" ng-click="getValueFromButton(button ='*')">*</button>
+                    <button class="btn btn-fill btn-sm" ng-click="getValueFromButton(button ='FROM')">FROM</button>
+                    <button class="btn btn-fill btn-sm btn-warning" ng-click="getValueFromButton(button ='Book')">Book</button>
+                    <button class="btn btn-fill btn-sm btn-success" ng-click="getValueFromButton(button ='WHERE')">Where</button>
+                    <button class="btn btn-outline-dark" ng-click="getValueFromButton(button = query1)">{[{ query1 }]}</button>
+                    <button class="btn btn-outline-dark" ng-click="getValueFromButton(button = query2)">{[{ query2 }]}</button>
+                    <button class="btn btn-outline-dark" ng-click="getValueFromButton(button = query3)">{[{ query3 }]}</button>
                 </div>
             </div>
-            <table class="table table-striped">
+            <table class="table table-striped" ng-init="getBooks()">
                 <caption>Database table 'Book'</caption>
                 <thead class="thead-dark">
                     <tr>
                         <th>Lp.</th>
+                        <th>id</th>
                         <th>Tytuł</th>
                         <th>Autor</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($books as $book) { ?>
-                        <tr>
-                            <th>1</th>
-                            <td><?= $book->getTitle() ?></td>
-                            <td><?= $book->getAuthor() ?></td>
-                        </tr>
-                    <?php } ?>
+                    <tr ng-repeat="(key, book) in books">
+                        <th>{[{ key }]}</th>
+                        <td>{[{ book.id }]}</td>
+                        <td>{[{ book.title }]}</td>
+                        <td>{[{ book.author }]}</td>
+                    </tr>
                 </tbody>
             </table>
 
