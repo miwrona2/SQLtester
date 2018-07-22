@@ -40,7 +40,9 @@ class IndexController extends ControllerBase
         if ($this->request->isAjax()) {
             $queryString = $this->request->getPost('queryString');
 
-            $queryResult = (new BookRepository())->executeQuery($queryString);
+            /** @var BookService $bookService */
+            $bookService = $this->getDI()->get('BookService');
+            $queryResult = $bookService->getQueryResult($queryString);
 
             $columns = [];
             foreach($queryResult[0]->toArray() as $k => $v) {

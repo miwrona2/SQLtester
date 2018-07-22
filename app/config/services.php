@@ -124,3 +124,5 @@ $di->setShared('session', function () {
 
     return $session;
 });
+
+require 'di_services.php';

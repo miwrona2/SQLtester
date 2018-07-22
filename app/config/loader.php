@@ -11,6 +11,7 @@ $loader->registerDirs(
         $config->application->modelsDir,
         $config->application->formsDir,
         $config->application->repositoriesDir,
+        $config->application->servicesDir,
         $config->application->libraryDir,
         $config->application->baseUri,
     ]
