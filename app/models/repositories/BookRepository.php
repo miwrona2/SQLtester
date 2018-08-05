@@ -16,6 +16,8 @@ Class BookRepository extends RepositoryBase
     public function executeQuery(string $query)
     {
         $queryBuilder = new Query($query, $this->getDi());
+
         return $queryBuilder->execute();
+
     }
 }

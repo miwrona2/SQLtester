@@ -43,8 +43,50 @@ app.controller('Controller', function($scope, $http) {
             $scope.sqlresults = response.data.queryResult;
             $scope.columns = response.data.columns;
             $scope.getBooks();
+            if (response.data.status == 'success') {
+                $.notify({
+                    message: response.data.message
+                }, {
+                    type: 'success',
+                    delay: 5000,
+                    placement: {
+                        align: "left"
+                    },
+                    animate: {
+                        enter: 'animated fadeInDown',
+                        exit: 'animated fadeOutUp'
+                    }
+                });
+            } else {
+                $.notify({
+                    message: response.data.message
+                }, {
+                    type: 'warning',
+                    delay: 5000,
+                    placement: {
+                        align: "center"
+                    },
+                    animate: {
+                        enter: 'animated fadeInDown',
+                        exit: 'animated fadeOutUp'
+                    }
+                });
+            }
 
-        }, function myError(response) {
+        }, function errorCallback(response){
+            $.notify({
+                message: 'An error occurred'
+            },{
+                type: 'warning',
+                delay: 5000,
+                placement: {
+                    align: "center"
+                },
+                animate: {
+                    enter: 'animated fadeInDown',
+                    exit: 'animated fadeOutUp'
+                }
+            });
         });
 
     };

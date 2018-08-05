@@ -1,6 +1,7 @@
 <?php
 
 use Phalcon\Mvc\Model\Resultset\Simple;
+use Phalcon\Http\Response;
 
 /**
  * @RoutePrefix("/index")
@@ -42,25 +43,34 @@ class IndexController extends ControllerBase
 
             /** @var BookService $bookService */
             $bookService = $this->getDI()->get('BookService');
-            $queryResult = $bookService->getQueryResult($queryString);
-
-            $columns = [];
-            foreach($queryResult[0]->toArray() as $k => $v) {
-                $columns[] = $k;
-            }
-
-            if ($queryResult instanceof Simple) {
+            if (mb_strlen($queryString) > 0) {
+                try {
+                    $queryResult = $bookService->getQueryResult($queryString);
+                    $message = 'Execution completed!';
+                } catch (Exception $e){
+                    return json_encode([
+                        'status' => 'error',
+                        'message' => $e->getMessage(),
+                    ]);
+                }
+                $columns = [];
+                foreach($queryResult[0]->toArray() as $k => $v) {
+                    $columns[] = $k;
+                }
                 $queryResult = $queryResult->toArray();
             } else {
                 $queryResult = [];
+                $columns = [];
+                $message = 'Enter a database query or use buttons';
             }
 
             return json_encode([
                 'status' => 'success',
-                'message' => 'Execution completed!',
+                'message' => $message,
                 'queryResult' => $queryResult,
                 'columns' => $columns
             ]);
+
         }
     }
 
