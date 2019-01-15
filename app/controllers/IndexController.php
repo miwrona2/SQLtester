@@ -45,7 +45,7 @@ class IndexController extends ControllerBase
             $bookService = $this->getDI()->get('BookService');
             if (mb_strlen($queryString) > 0) {
                 try {
-                    $queryResult = $bookService->getQueryResult($queryString);
+                    $queryResult = $bookService->getQueryResult($queryString)->toArray();
                     $message = 'Execution completed!';
                 } catch (Exception $e){
                     return json_encode([
@@ -53,14 +53,10 @@ class IndexController extends ControllerBase
                         'message' => $e->getMessage(),
                     ]);
                 }
-                $columns = [];
-                foreach($queryResult[0]->toArray() as $k => $v) {
-                    $columns[] = $k;
-                }
-                $queryResult = $queryResult->toArray();
+                $columnNames = $bookService->getColumnNames($queryResult);
             } else {
                 $queryResult = [];
-                $columns = [];
+                $columnNames = [];
                 $message = 'Enter a database query or use buttons';
             }
 
@@ -68,7 +64,7 @@ class IndexController extends ControllerBase
                 'status' => 'success',
                 'message' => $message,
                 'queryResult' => $queryResult,
-                'columns' => $columns
+                'columns' => $columnNames
             ]);
 
         }

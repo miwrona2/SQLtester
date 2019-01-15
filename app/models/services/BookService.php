@@ -23,4 +23,13 @@ class BookService extends Injectable
         }
         return $queryResult;
     }
+
+    public function getColumnNames(array $queryResult): array
+    {
+        $columns = [];
+        foreach($queryResult[0] as $k => $v) {
+            $columns[] = $k;
+        }
+        return $columns;
+    }
 }
