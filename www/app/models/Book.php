@@ -4,7 +4,7 @@ use Phalcon\MVC\Model;
 
 class Book extends Model
 {
-    const TABLE = "book";
+    const TABLE = 'book';
 
     /**
      * @var int
