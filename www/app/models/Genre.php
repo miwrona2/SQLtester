@@ -14,7 +14,7 @@ class Genre extends Model
     /**
      * @var string
      */
-    private $name;
+    private $fullname;
 
 
     public function getId(): ?int
@@ -28,13 +28,13 @@ class Genre extends Model
         return $this;
     }
 
-    public function getName(): string
+    public function getFullname(): string
     {
-        return $this->name;
+        return $this->fullname;
     }
 
-    public function setName(string $name): Genre
+    public function setFullname(string $fullname): Genre
     {
-        $this->name = $name;
+        $this->fullname = $fullname;
     }
 }

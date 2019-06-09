@@ -20,10 +20,10 @@ app.controller('Controller', function($scope, $http) {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
                 'X-Requested-With': 'XMLHttpRequest'
             }
-        }).then(function mySuccess(response) {
+        }).then(function (response) {
             $scope.books = response.data.books;
 
-        }, function myError(response) {
+        }, function (response) {
         });
     };
 
@@ -39,10 +39,9 @@ app.controller('Controller', function($scope, $http) {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
                 'X-Requested-With': 'XMLHttpRequest'
             }
-        }).then(function mySuccess(response) {
+        }).then(function (response) {
             $scope.sqlresults = response.data.queryResult;
             $scope.columns = response.data.columns;
-            $scope.getBooks();
             if (response.data.status == 'success') {
                 $.notify({
                     message: response.data.message
