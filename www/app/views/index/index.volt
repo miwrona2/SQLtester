@@ -25,6 +25,7 @@
                     <button class="btn btn-outline-dark" ng-click="getValueFromButton(button = query1)">{[{ query1 }]}</button>
                     <button class="btn btn-outline-dark" ng-click="getValueFromButton(button = query2)">{[{ query2 }]}</button>
                     <button class="btn btn-outline-dark" ng-click="getValueFromButton(button = query3)">{[{ query3 }]}</button>
+                    <button class="btn btn-outline-dark" ng-click="getValueFromButton(button = query4)">{[{ query4 }]}</button>
                 </div>
             </div>
             <table class="table table-striped" ng-init="getBooks()">

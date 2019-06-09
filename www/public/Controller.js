@@ -5,6 +5,7 @@ app.controller('Controller', function($scope, $http) {
     $scope.query1 = 'SELECT * FROM Book';
     $scope.query2 = 'INSERT INTO Book (title, author) VALUES (\'book_title\', \'Name_Surname\')';
     $scope.query3 = 'DELETE FROM Book WHERE title = \'book_title\'';
+    $scope.query4 = ' SELECT * FROM book join genre on book.genre_id = genre.id where genre.id = 3';
     $scope.textValue = '';
     $scope.sqlresults = [];
     $scope.columns = [];
