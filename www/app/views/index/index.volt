@@ -52,7 +52,7 @@
             </table>
 
             <table id="genres" class="table table-striped" ng-init="getGenres()">
-                <caption>Database table 'Book'</caption>
+                <caption>Database table 'Genre'</caption>
                 <thead class="thead-dark">
                 <tr>
                     <th>Lp.</th>

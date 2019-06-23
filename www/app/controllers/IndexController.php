@@ -24,9 +24,9 @@ class IndexController extends ControllerBase
      */
     public function getBooksAction()
     {
-        /** @var ModelRepository $modelRepository */
-        $modelRepository = $this->getDI()->get('ModelRepository');
-        $books = $modelRepository->getBooks();
+        /** @var MainRepository $mainRepository */
+        $mainRepository = $this->getDI()->get('MainRepository');
+        $books = $mainRepository->getBooks();
         $this->view->books = $books;
         return json_encode([
             'status' => 'success',
@@ -40,9 +40,9 @@ class IndexController extends ControllerBase
      */
     public function getGenresAction()
     {
-        /** @var ModelRepository $modelRepository */
-        $modelRepository = $this->getDI()->get('ModelRepository');
-        $genres = $modelRepository->getGenres();
+        /** @var MainRepository $mainRepository */
+        $mainRepository = $this->getDI()->get('MainRepository');
+        $genres = $mainRepository->getGenres();
         return json_encode([
             'status' => 'success',
             'message' => 'Database result successful',
