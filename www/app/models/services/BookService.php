@@ -7,7 +7,7 @@ class BookService extends Injectable
 {
     protected $bookRepository;
 
-    public function __construct(BookRepository $bookRepository)
+    public function __construct(ModelRepository $bookRepository)
     {
         $this->bookRepository = $bookRepository;
     }

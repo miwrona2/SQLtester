@@ -2,9 +2,9 @@
 
 use Phalcon\Mvc\Model\Query;
 
-Class BookRepository extends RepositoryBase
+Class ModelRepository extends RepositoryBase
 {
-    public function getAll()
+    public function getBooks()
     {
         $query = new Query(
         'SELECT * FROM Book',

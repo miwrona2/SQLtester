@@ -6,11 +6,11 @@ $di->setShared('BookService', [
     'arguments' => [
         [
             'type' => 'service',
-            'name' => 'BookRepository',
+            'name' => 'ModelRepository',
         ],
     ]
 ]);
 
-$di->setShared('BookRepository', [
-    'className' => BookRepository::class
+$di->setShared('ModelRepository', [
+    'className' => ModelRepository::class
 ]);
