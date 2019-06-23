@@ -10,12 +10,13 @@ app.controller('Controller', function($scope, $http) {
     $scope.sqlresults = [];
     $scope.columns = [];
     $scope.books = [];
+    $scope.genres = [];
     $scope.getValueFromButton = function () {
         $scope.textValue += ' ' + $scope.button;
     };
     $scope.getBooks = function() {
         $http({
-            method : "POST",
+            method : "GET",
             url : "index/get-books",
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
@@ -25,6 +26,21 @@ app.controller('Controller', function($scope, $http) {
             $scope.books = response.data.books;
 
         }, function (response) {
+        });
+    };
+
+    $scope.getGenres = function() {
+        $http({
+            method : "GET",
+            url : "index/get-genres",
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        }).then(function (response) {
+            $scope.genres = response.data.genres;
+        }, function (response) {
+            alert('error getGenres');
         });
     };
 

@@ -1,7 +1,7 @@
 <?php
 
-use Phalcon\Mvc\Model\Resultset\Simple;
 use Phalcon\Http\Response;
+use Phalcon\Mvc\Model\Resultset\Simple;
 
 /**
  * @RoutePrefix("/index")
@@ -20,7 +20,7 @@ class IndexController extends ControllerBase
     }
 
     /**
-     * @Route("/get-books", methods={"POST"}, name="getbooks")
+     * @Route("/get-books", methods={"GET"}, name="getbooks")
      */
     public function getBooksAction()
     {
@@ -30,6 +30,19 @@ class IndexController extends ControllerBase
             'status' => 'success',
             'message' => 'Database result successful',
             'books' => $books
+        ]);
+    }
+
+    /**
+     * @Route("/get-genres", methods={"GET"}, name="getgenres")
+     */
+    public function getGenresAction()
+    {
+        $genres = (new BookRepository())->getGenres();
+        return json_encode([
+            'status' => 'success',
+            'message' => 'Database result successful',
+            'genres' => $genres,
         ]);
     }
 

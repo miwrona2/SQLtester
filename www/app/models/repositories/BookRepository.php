@@ -20,4 +20,13 @@ Class BookRepository extends RepositoryBase
         return $queryBuilder->execute();
 
     }
+
+    public function getGenres()
+    {
+        $query = new Query(
+            'SELECT * FROM Genre',
+            $this->getDI()
+        );
+        return $query->execute();
+    }
 }
