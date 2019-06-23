@@ -56,7 +56,7 @@ class IndexController extends ControllerBase
     public function executeAction()
     {
         if ($this->request->isAjax()) {
-            $queryString = $this->request->getPost('queryString');
+            $queryString = $this->request->getPost('queryString', 'striptags');
 
             /** @var BookService $bookService */
             $bookService = $this->getDI()->get('BookService');
