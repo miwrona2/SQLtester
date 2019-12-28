@@ -1,4 +1,4 @@
 .idea
-cache/
+www/cache/
 dump/
 !.gitignore

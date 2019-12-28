@@ -1,7 +1,3 @@
 <?php 
-echo 'Hello World!';
-echo '<br>';
-$var = 'sdfsdfsdfsdfsd';
-var_dump($var);
-echo 'write in URL:http://127.0.0.1:8001/public/index.php';
+require_once 'public/index.php';
 
