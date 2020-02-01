@@ -2,7 +2,7 @@
 
 use Phalcon\Mvc\Model\Query;
 
-Class MainRepository extends RepositoryBase
+class MainRepository extends RepositoryBase
 {
     public function getBooks()
     {

@@ -2,3 +2,4 @@
 www/cache/
 dump/
 !.gitignore
+/www/vendor/
