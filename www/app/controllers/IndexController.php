@@ -62,9 +62,9 @@ class IndexController extends ControllerBase
             $bookService = $this->getDI()->get('BookService');
             if (mb_strlen($queryString) > 0) {
                 try {
-                    $queryResult = $bookService->getQueryResult($queryString)->toArray();
+                    $queryResult = $bookService->getQueryResult($queryString);
                     $message = 'Execution completed!';
-                } catch (Exception $e){
+                } catch (Exception $e) {
                     return json_encode([
                         'status' => 'error',
                         'message' => $e->getMessage(),
