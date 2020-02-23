@@ -5,26 +5,24 @@ use Phalcon\Mvc\Model\Resultset;
 
 class BookService extends Injectable
 {
-    protected $bookRepository;
+    private $mainRepository;
+    private $rawSqlRepository;
 
-    public function __construct(MainRepository $bookRepository)
+    public function __construct(MainRepository $bookRepository, RawSqlRepository $rawSqlRepository)
     {
-        $this->bookRepository = $bookRepository;
+        $this->mainRepository = $bookRepository;
+        $this->rawSqlRepository = $rawSqlRepository;
     }
 
     public function getQueryResult(string $query): array
     {
         try {
             if (strpos($query, 'UNION') > -1 || strpos($query, 'union') > -1) {
-                $repository = new RawSqlRepository();
-                $queryResult = $repository->getRaw($query);
+                $queryResult = $this->rawSqlRepository->getRaw($query);
             } else {
-                $repository = $this->bookRepository;
-                $queryResult = $repository->executeQuery($query)->toArray();
+                $queryResult = $this->mainRepository->executeQuery($query)->toArray();
             }
         } catch (Exception $e) {
-            throw new Exception($e->getMessage());
-        } catch (PDOException $e) {
             throw new Exception($e->getMessage());
         }
         return $queryResult;

@@ -6,6 +6,13 @@ app.controller('Controller', function($scope, $http) {
     $scope.query2 = 'INSERT INTO Book (title, author) VALUES (\'book_title\', \'Name_Surname\')';
     $scope.query3 = 'DELETE FROM Book WHERE title = \'book_title\'';
     $scope.query4 = ' SELECT * FROM Book b join Genre g on b.genre_id = g.id where g.id = 3';
+    $scope.query5 = 'SELECT *\n' +
+        'FROM book\n' +
+        '         LEFT JOIN genre ON book.id = genre.id\n' +
+        'UNION\n' +
+        'SELECT *\n' +
+        'FROM book\n' +
+        '         RIGHT JOIN genre ON book.id = genre.id;\n';
     $scope.textValue = '';
     $scope.sqlresults = [];
     $scope.columns = [];

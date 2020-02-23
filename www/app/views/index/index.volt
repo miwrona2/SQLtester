@@ -26,6 +26,7 @@
                     <button class="btn btn-outline-dark" ng-click="getValueFromButton(button = query2)">{[{ query2 }]}</button>
                     <button class="btn btn-outline-dark" ng-click="getValueFromButton(button = query3)">{[{ query3 }]}</button>
                     <button class="btn btn-outline-dark" ng-click="getValueFromButton(button = query4)">{[{ query4 }]}</button>
+                    <button class="btn btn-outline-dark" style="white-space: pre" ng-click="getValueFromButton(button = query5)">{[{ query5 }]}</button>
                 </div>
             </div>
             {% include 'index/includes/results.volt' %}
